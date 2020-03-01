@@ -1,0 +1,19 @@
+service: node-app
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+functions:
+  nodeapp:
+    handler: handler.nodeapp
+    events:
+      - http:
+          path: /time
+          method: get
+          request:
+            parameters:
+              querystrings:
+                tz: true
+plugins:
+  - serverless-offline
