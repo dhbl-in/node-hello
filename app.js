@@ -1,14 +1,7 @@
-const http = require('http');
-
-const hostname = '0.0.0.0';
-const port = 8000;
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World\n');
-});
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+const express = require('express')
+const sls = require('serverless-http')
+const app = express()
+app.get('/', async (req, res, next) => {
+  res.status(200).send('Hello World!')
+})
+module.exports.server = sls(app)
